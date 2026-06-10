@@ -66,17 +66,73 @@ final class StatsStore {
 
     // MARK: - History
 
-    func activityHistory(for accountName: String? = nil, days: Int = 7) -> [ActivityRecord] {
+    struct AggregatedRecord: Identifiable {
+        let id: Date
+        let period: Date
+        let unreadCount: Int
+        let totalInboxCount: Int
+        let sentCount: Int
+        let trashCount: Int
+    }
+
+    func activityHistory(for accountName: String? = nil, days: Int = 7) -> [AggregatedRecord] {
         let cutoff = Calendar.current.date(byAdding: .day, value: -days, to: .now)!
         let context = ModelContext(modelContainer)
         var descriptor = FetchDescriptor<ActivityRecord>(
             predicate: #Predicate { $0.timestamp >= cutoff },
-            sortBy: [SortDescriptor(\.timestamp, order: .reverse)]
+            sortBy: [SortDescriptor(\.timestamp, order: .forward)]
         )
         if let name = accountName {
             descriptor.predicate = #Predicate { $0.timestamp >= cutoff && $0.accountName == name }
         }
-        return (try? context.fetch(descriptor)) ?? []
+        let raw = (try? context.fetch(descriptor)) ?? []
+        guard !raw.isEmpty else { return [] }
+
+        let cal = Calendar.current
+        let byHour = days <= 1
+
+        var buckets: [Date: (unread: Int, inbox: Int, sent: Int, trash: Int, count: Int)] = [:]
+        for r in raw {
+            let period = byHour
+                ? cal.date(from: cal.dateComponents([.year, .month, .day, .hour], from: r.timestamp))!
+                : cal.startOfDay(for: r.timestamp)
+            let cur = buckets[period] ?? (0, 0, 0, 0, 0)
+            buckets[period] = (
+                max(cur.unread, r.unreadCount),
+                max(cur.inbox, r.totalInboxCount),
+                max(cur.sent, r.sentCount),
+                max(cur.trash, r.trashCount),
+                cur.count + 1
+            )
+        }
+
+        return buckets.map { (period, v) in
+            AggregatedRecord(id: period, period: period,
+                             unreadCount: v.unread, totalInboxCount: v.inbox,
+                             sentCount: v.sent, trashCount: v.trash)
+        }
+        .sorted { $0.period > $1.period }
+    }
+
+    // MARK: - Day Summary
+
+    struct DaySummary {
+        let unreadChange: Int
+        let inboxChange: Int
+        let peakUnread: Int
+        let snapshotCount: Int
+    }
+
+    func todaySummary() -> DaySummary? {
+        let records = activityHistory(days: 1)
+        guard let oldest = records.last, let newest = records.first else { return nil }
+
+        return DaySummary(
+            unreadChange: newest.unreadCount - oldest.unreadCount,
+            inboxChange: newest.totalInboxCount - oldest.totalInboxCount,
+            peakUnread: records.map(\.unreadCount).max() ?? 0,
+            snapshotCount: records.count
+        )
     }
 
     // MARK: - Private

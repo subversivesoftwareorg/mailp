@@ -113,15 +113,15 @@ func drawEnvelope(_ ctx: CGContext, size: CGFloat) {
 // ── "+" Badge ───────────────────────────────────────────────────
 
 func drawBadge(_ ctx: CGContext, size: CGFloat) {
-    let r = size * 0.105
-    let cx = size * 0.76
-    let cy = size * 0.64
+    let r = size * 0.18
+    let cx = size * 0.74
+    let cy = size * 0.68
 
     // Shadow
     ctx.saveGState()
-    ctx.setShadow(offset: CGSize(width: 0, height: -size * 0.01),
-                  blur: size * 0.025,
-                  color: CGColor(red: 0, green: 0, blue: 0, alpha: 0.30))
+    ctx.setShadow(offset: CGSize(width: 0, height: -size * 0.015),
+                  blur: size * 0.04,
+                  color: CGColor(red: 0, green: 0, blue: 0, alpha: 0.35))
 
     // Green circle
     let rect = CGRect(x: cx - r, y: cy - r, width: r * 2, height: r * 2)
@@ -132,15 +132,15 @@ func drawBadge(_ ctx: CGContext, size: CGFloat) {
 
     // Rim
     ctx.saveGState()
-    ctx.addEllipse(in: rect.insetBy(dx: size * 0.003, dy: size * 0.003))
+    ctx.addEllipse(in: rect.insetBy(dx: size * 0.004, dy: size * 0.004))
     ctx.setStrokeColor(CGColor(red: 0.15, green: 0.65, blue: 0.28, alpha: 0.4))
-    ctx.setLineWidth(size * 0.004)
+    ctx.setLineWidth(size * 0.005)
     ctx.strokePath()
     ctx.restoreGState()
 
     // White "+"
-    let barHalf = r * 0.48
-    let barWidth = size * 0.030
+    let barHalf = r * 0.50
+    let barWidth = size * 0.050
     ctx.saveGState()
     ctx.setStrokeColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
     ctx.setLineWidth(barWidth)

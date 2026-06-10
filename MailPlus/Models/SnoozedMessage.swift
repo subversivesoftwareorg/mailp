@@ -24,6 +24,7 @@ enum SnoozeDuration: String, CaseIterable, Sendable {
     case oneDay = "1d"
     case threeDays = "3d"
     case oneWeek = "7d"
+    case oneMonth = "30d"
     case nextMonday = "monday"
 
     var displayName: String {
@@ -31,6 +32,7 @@ enum SnoozeDuration: String, CaseIterable, Sendable {
         case .oneDay: "1 Day"
         case .threeDays: "3 Days"
         case .oneWeek: "1 Week"
+        case .oneMonth: "30 Days"
         case .nextMonday: "Next Monday"
         }
     }
@@ -44,6 +46,8 @@ enum SnoozeDuration: String, CaseIterable, Sendable {
             return calendar.date(byAdding: .day, value: 3, to: now)!
         case .oneWeek:
             return calendar.date(byAdding: .day, value: 7, to: now)!
+        case .oneMonth:
+            return calendar.date(byAdding: .day, value: 30, to: now)!
         case .nextMonday:
             let weekday = calendar.component(.weekday, from: now)
             let daysUntilMonday = (9 - weekday) % 7

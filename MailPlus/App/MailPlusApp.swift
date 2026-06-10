@@ -16,11 +16,17 @@ struct MailPlusApp: App {
         let container = try! ModelContainer(for: schema, configurations: [config])
 
         let snooze = SnoozeService(modelContainer: container)
+        let stats = StatsStore(modelContainer: container)
 
         self.modelContainer = container
-        self.statsStore = StatsStore(modelContainer: container)
+        self.statsStore = stats
         self.snoozeService = snooze
-        self.keyboardService = KeyboardShortcutService(snoozeService: snooze)
+        self.keyboardService = KeyboardShortcutService()
+
+        DispatchQueue.main.async {
+            stats.startPolling()
+            snooze.startChecking()
+        }
     }
 
     var body: some Scene {

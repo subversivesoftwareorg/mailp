@@ -20,7 +20,7 @@ set -e
 #   ./Scripts/create-dmg.sh --skip-notarize   # build + sign only
 
 APP_NAME="MailPlus"
-DISPLAY_NAME="Mail+"
+PRODUCT_NAME="Mail+"
 BUNDLE_ID="com.subversivesoftware.mailplus"
 EXTENSION_NAME="MailPlusExtension"
 
@@ -79,7 +79,7 @@ fi
 cd "$PROJECT_DIR"
 
 # ── Build (universal binary) ─────────────────────────────────────
-echo "==> Building $DISPLAY_NAME v$VERSION build $NEW_BUILD (Release, universal)..."
+echo "==> Building $PRODUCT_NAME v$VERSION build $NEW_BUILD (Release, universal)..."
 xcodebuild -project "$PROJECT_DIR/$APP_NAME.xcodeproj" \
     -scheme "$APP_NAME" \
     -configuration Release \
@@ -87,16 +87,17 @@ xcodebuild -project "$PROJECT_DIR/$APP_NAME.xcodeproj" \
     ARCHS="arm64 x86_64" \
     ONLY_ACTIVE_ARCH=NO \
     DEVELOPMENT_TEAM="${TEAM_ID:-84CC987JU3}" \
+    CODE_SIGNING_ALLOWED=NO \
     clean build \
     | tail -5
 
-APP_PATH="$DERIVED_DATA/Build/Products/Release/$APP_NAME.app"
+APP_PATH="$DERIVED_DATA/Build/Products/Release/$PRODUCT_NAME.app"
 if [ ! -d "$APP_PATH" ]; then
-    echo "Error: Build failed — $APP_NAME.app not found"
+    echo "Error: Build failed — $PRODUCT_NAME.app not found"
     exit 1
 fi
 
-if [ ! -f "$APP_PATH/Contents/MacOS/$APP_NAME" ]; then
+if [ ! -f "$APP_PATH/Contents/MacOS/$PRODUCT_NAME" ]; then
     echo "Error: Build produced an app bundle but the binary is missing!"
     exit 1
 fi
@@ -133,7 +134,7 @@ if [ -n "$IDENTITY" ]; then
 fi
 
 # ── Verify binary architecture ────────────────────────────────────
-ARCHS=$(lipo -archs "$APP_PATH/Contents/MacOS/$APP_NAME" 2>/dev/null || echo "unknown")
+ARCHS=$(lipo -archs "$APP_PATH/Contents/MacOS/$PRODUCT_NAME" 2>/dev/null || echo "unknown")
 echo "    Architecture: $ARCHS"
 
 # ── Create DMG ───────────────────────────────────────────────────
@@ -151,14 +152,14 @@ if command -v create-dmg >/dev/null 2>&1; then
     fi
 
     create-dmg \
-        --volname "$DISPLAY_NAME" \
+        --volname "$PRODUCT_NAME" \
         $VOL_ICON_FLAG \
         --window-pos 200 120 \
         --window-size 600 400 \
         --icon-size 100 \
-        --icon "$APP_NAME.app" 175 190 \
+        --icon "$PRODUCT_NAME.app" 175 190 \
         --app-drop-link 425 190 \
-        --hide-extension "$APP_NAME.app" \
+        --hide-extension "$PRODUCT_NAME.app" \
         "$DMG_PATH" \
         "$STAGING_DIR" \
         || true
@@ -168,7 +169,7 @@ if command -v create-dmg >/dev/null 2>&1; then
     fi
 else
     ln -sf /Applications "$STAGING_DIR/Applications"
-    hdiutil create -volname "$DISPLAY_NAME" \
+    hdiutil create -volname "$PRODUCT_NAME" \
         -srcfolder "$STAGING_DIR" \
         -ov -format UDZO \
         "$DMG_PATH"
@@ -233,7 +234,7 @@ TAG="v${VERSION}-b${NEW_BUILD}"
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     git add "$PLIST"
     git commit -m "Build $NEW_BUILD for v$VERSION distribution" 2>/dev/null || true
-    git tag -a "$TAG" -m "$DISPLAY_NAME $VERSION build $NEW_BUILD"
+    git tag -a "$TAG" -m "$PRODUCT_NAME $VERSION build $NEW_BUILD"
     echo "  Tagged: $TAG"
     echo ""
     echo "Push with: git push && git push --tags"

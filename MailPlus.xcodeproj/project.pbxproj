@@ -25,6 +25,8 @@
 		D3F22941FBC10C9FC2CF024A /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D78CEE2D2CC74525B1A080 /* AccountRow.swift */; };
 		D3E4F5A6B7C8D9E0F1A2B3C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */; };
+		C2D3E4F5A6B7C8D9E0F1A2B3 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F6A7B8C9D0E1F2A3B4C5 /* IntroView.swift */; };
+		E5F6A7B8C9D0E1F2A3B4C5D6 /* BlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* BlocksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		FC8CED871512624EFF27B205 /* MailPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutService.swift; sourceTree = "<group>"; };
+		D4E5F6A7B8C9D0E1F2A3B4C5 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		F6A7B8C9D0E1F2A3B4C5D6E7 /* BlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				91D78CEE2D2CC74525B1A080 /* AccountRow.swift */,
+				F6A7B8C9D0E1F2A3B4C5D6E7 /* BlocksView.swift */,
 				16B767F7AFB255E310228475 /* DashboardView.swift */,
+				D4E5F6A7B8C9D0E1F2A3B4C5 /* IntroView.swift */,
 				B2283C6AAD40CBD51879708D /* PopoverView.swift */,
 				49921AB7CDC0639AA71D2EF8 /* Components */,
 			);
@@ -308,6 +314,8 @@
 				8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */,
 				4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */,
 				7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */,
+				E5F6A7B8C9D0E1F2A3B4C5D6 /* BlocksView.swift in Sources */,
+				C2D3E4F5A6B7C8D9E0F1A2B3 /* IntroView.swift in Sources */,
 				A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */,
 				5F0909488EAA6510C36F2548 /* MailQueryService.swift in Sources */,
 				7C594FD507D8337FF2DAB426 /* PopoverView.swift in Sources */,

@@ -61,7 +61,39 @@ final class SnoozeService {
         loadActive()
     }
 
+    func recordHold(subject: String, accountName: String, originalMailbox: String, duration: SnoozeDuration) {
+        let record = SnoozedMessage(
+            messageSubject: subject,
+            accountName: accountName,
+            originalMailbox: originalMailbox,
+            wakeAt: duration.wakeDate(),
+            style: .moveAndResurface
+        )
+
+        let context = ModelContext(modelContainer)
+        context.insert(record)
+        try? context.save()
+
+        scheduleNotification(for: record)
+        notifyHoldConfirmation(subject: subject, duration: duration)
+        loadActive()
+    }
+
+    private func notifyHoldConfirmation(subject: String, duration: SnoozeDuration) {
+        let content = UNMutableNotificationContent()
+        content.title = "Held — \(duration.displayName)"
+        content.body = subject
+        content.sound = nil
+        let request = UNNotificationRequest(
+            identifier: "hold-confirm-\(Date.now.timeIntervalSince1970)",
+            content: content,
+            trigger: nil
+        )
+        UNUserNotificationCenter.current().add(request)
+    }
+
     func startChecking(interval: TimeInterval = 30) {
+        loadActive()
         checkTask?.cancel()
         checkTask = Task { [weak self] in
             while !Task.isCancelled {

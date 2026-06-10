@@ -63,7 +63,7 @@ struct AccountDetailView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 40)
             } else {
-                ActivityTableView(records: records)
+                ActivityTableView(records: records, days: historyDays)
             }
         }
     }
@@ -94,33 +94,49 @@ struct StatCard: View {
 }
 
 struct ActivityTableView: View {
-    let records: [ActivityRecord]
+    let records: [StatsStore.AggregatedRecord]
+    let days: Int
+
+    private var periodFormat: Date.FormatStyle {
+        if days <= 1 {
+            return .dateTime.hour().minute()
+        } else if days <= 7 {
+            return .dateTime.weekday(.abbreviated).hour()
+        } else {
+            return .dateTime.month(.abbreviated).day()
+        }
+    }
 
     var body: some View {
         Table(records) {
-            TableColumn("Time") { record in
-                Text(record.timestamp, format: .dateTime.month().day().hour().minute())
+            TableColumn("Period") { record in
+                Text(record.period, format: periodFormat)
                     .font(.caption)
+                    .monospacedDigit()
             }
-            .width(min: 100, ideal: 140)
+            .width(min: 80, ideal: 120)
 
             TableColumn("Unread") { record in
                 Text("\(record.unreadCount)")
+                    .monospacedDigit()
             }
             .width(60)
 
             TableColumn("Inbox") { record in
                 Text("\(record.totalInboxCount)")
+                    .monospacedDigit()
             }
             .width(60)
 
             TableColumn("Sent") { record in
                 Text("\(record.sentCount)")
+                    .monospacedDigit()
             }
             .width(60)
 
             TableColumn("Trash") { record in
                 Text("\(record.trashCount)")
+                    .monospacedDigit()
             }
             .width(60)
         }

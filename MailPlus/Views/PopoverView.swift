@@ -9,11 +9,9 @@ struct PopoverView: View {
         VStack(alignment: .leading, spacing: 0) {
             header
             Divider()
-            accountList
-            Divider()
             footer
         }
-        .frame(width: 320)
+        .frame(width: 280)
     }
 
     // MARK: - Sections
@@ -23,54 +21,21 @@ struct PopoverView: View {
             Text("Mail+")
                 .font(.headline)
             Spacer()
-            if store.isLoading {
-                ProgressView()
-                    .scaleEffect(0.6)
-            }
-            Button {
-                Task { await store.refresh() }
-            } label: {
-                Image(systemName: "arrow.clockwise")
-            }
-            .buttonStyle(.borderless)
-        }
-        .padding(12)
-    }
-
-    @ViewBuilder
-    private var accountList: some View {
-        if let error = store.errorMessage {
-            VStack(spacing: 8) {
-                Image(systemName: "exclamationmark.triangle")
-                    .font(.title2)
-                    .foregroundStyle(.orange)
-                Text(error)
-                    .font(.caption)
-                    .multilineTextAlignment(.center)
+            if store.totalUnread > 0 {
+                Text("\(store.totalUnread) unread")
+                    .font(.subheadline.bold())
+                    .foregroundStyle(.blue)
+            } else {
+                Text("Inbox zero")
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-        } else if store.accounts.isEmpty && !store.isLoading {
-            Text("No accounts found")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding()
-                .frame(maxWidth: .infinity)
-        } else {
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(store.accounts) { account in
-                        AccountRow(account: account)
-                            .padding(.horizontal, 12)
-                        if account.id != store.accounts.last?.id {
-                            Divider().padding(.leading, 48)
-                        }
-                    }
-                }
+            if store.isLoading {
+                ProgressView()
+                    .scaleEffect(0.5)
             }
-            .frame(maxHeight: 300)
         }
+        .padding(12)
     }
 
     private var footer: some View {
@@ -83,12 +48,18 @@ struct PopoverView: View {
                         .foregroundStyle(.tertiary)
                 }
                 Spacer()
-                Button("Open Dashboard") {
+                Button("Dashboard") {
                     openWindow(id: "dashboard")
                     NSApp.activate(ignoringOtherApps: true)
                 }
                 .buttonStyle(.borderless)
                 .font(.caption)
+                Button("Quit") {
+                    NSApp.terminate(nil)
+                }
+                .buttonStyle(.borderless)
+                .font(.caption)
+                .foregroundStyle(.secondary)
             }
         }
         .padding(12)
@@ -96,16 +67,33 @@ struct PopoverView: View {
 
     private var shortcutToggle: some View {
         @Bindable var service = keyboardService
-        return HStack(spacing: 6) {
-            Toggle("Keyboard Shortcuts", isOn: $service.isEnabled)
-                .toggleStyle(.switch)
-                .controlSize(.mini)
-                .font(.caption)
-            if keyboardService.isEnabled && !keyboardService.isAccessibilityGranted {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.orange)
-                    .font(.caption2)
-                    .help("Accessibility permission required — open System Settings")
+        return VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 6) {
+                Toggle("Keyboard Shortcuts", isOn: $service.isEnabled)
+                    .toggleStyle(.switch)
+                    .controlSize(.mini)
+                    .font(.caption)
+                if keyboardService.isEnabled {
+                    if keyboardService.isMonitoring {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                            .font(.caption2)
+                            .help("Active — d/a/r/f/h shortcuts enabled in Mail.app")
+                    } else {
+                        Button {
+                            keyboardService.openAccessibilitySettings()
+                        } label: {
+                            HStack(spacing: 2) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                Text("Grant Access")
+                            }
+                        }
+                        .buttonStyle(.borderless)
+                        .foregroundStyle(.orange)
+                        .font(.caption2)
+                        .help("Click to open Accessibility settings — add Mail+ to the list")
+                    }
+                }
             }
         }
     }
