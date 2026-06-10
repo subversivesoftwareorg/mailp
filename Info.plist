@@ -17,12 +17,12 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>LSUIElement</key>
 	<true/>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>Mail+ needs access to Mail.app to read your account statistics and manage snoozed messages.</string>
 	<key>NSAccessibilityUsageDescription</key>
 	<string>Mail+ uses Accessibility to provide single-key shortcuts (d/a/r/f/h) when Mail.app is focused.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Mail+ needs access to Mail.app to read your account statistics and manage snoozed messages.</string>
 </dict>
 </plist>
