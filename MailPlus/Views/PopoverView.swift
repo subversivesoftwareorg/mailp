@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PopoverView: View {
     @Environment(StatsStore.self) private var store
+    @Environment(KeyboardShortcutService.self) private var keyboardService
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
@@ -73,20 +74,39 @@ struct PopoverView: View {
     }
 
     private var footer: some View {
-        HStack {
-            if let lastRefresh = store.lastRefresh {
-                Text("Updated \(lastRefresh, format: .relative(presentation: .named))")
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+        VStack(spacing: 8) {
+            shortcutToggle
+            HStack {
+                if let lastRefresh = store.lastRefresh {
+                    Text("Updated \(lastRefresh, format: .relative(presentation: .named))")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+                Spacer()
+                Button("Open Dashboard") {
+                    openWindow(id: "dashboard")
+                    NSApp.activate(ignoringOtherApps: true)
+                }
+                .buttonStyle(.borderless)
+                .font(.caption)
             }
-            Spacer()
-            Button("Open Dashboard") {
-                openWindow(id: "dashboard")
-                NSApp.activate(ignoringOtherApps: true)
-            }
-            .buttonStyle(.borderless)
-            .font(.caption)
         }
         .padding(12)
+    }
+
+    private var shortcutToggle: some View {
+        @Bindable var service = keyboardService
+        return HStack(spacing: 6) {
+            Toggle("Keyboard Shortcuts", isOn: $service.isEnabled)
+                .toggleStyle(.switch)
+                .controlSize(.mini)
+                .font(.caption)
+            if keyboardService.isEnabled && !keyboardService.isAccessibilityGranted {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.orange)
+                    .font(.caption2)
+                    .help("Accessibility permission required — open System Settings")
+            }
+        }
     }
 }

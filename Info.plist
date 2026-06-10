@@ -22,5 +22,7 @@
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Mail+ needs access to Mail.app to read your account statistics and manage snoozed messages.</string>
+	<key>NSAccessibilityUsageDescription</key>
+	<string>Mail+ uses Accessibility to provide single-key shortcuts (d/a/r/f/h) when Mail.app is focused.</string>
 </dict>
 </plist>

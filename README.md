@@ -30,39 +30,28 @@ Build and run from Xcode (Cmd+R). The app lives in the menu bar.
 On first run, macOS will prompt you to allow Mail+ to control Mail.app. Click **OK**.
 If you missed it: **System Settings > Privacy & Security > Automation > Mail+** > enable Mail.app.
 
-## Archive Keyboard Shortcut
+## Keyboard Shortcuts
 
-Mail.app has a built-in archive shortcut, but it's awkward:
+Mail+ adds Gmail-style single-key shortcuts when Mail.app is focused. Enable them from the menu bar popover toggle.
 
-| Action  | Default Shortcut |
-|---------|-----------------|
-| Archive | `Ctrl+Cmd+A` |
+| Key | Action | How it works |
+|-----|--------|--------------|
+| `d` | Delete (trash) | Posts `Cmd+Delete` |
+| `a` | Archive | Posts `Ctrl+Cmd+A` |
+| `r` | Reply | Posts `Cmd+R` |
+| `f` | Forward | AppleScript `forward` command |
+| `h` | Hold (snooze 1 day) | Moves to snooze mailbox, resurfaces tomorrow |
 
-### Set a Custom Archive Shortcut
+Shortcuts only fire when the message list or viewer is focused — they're automatically disabled in compose windows, search fields, and other text input areas.
 
-1. Open **System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts**
-2. Click **+**
-3. Application: **Mail**
-4. Menu Title: `Archive` (exact match)
-5. Keyboard Shortcut: press your desired key (e.g., `Cmd+E` for Gmail-style)
-6. Click **Done**
+### Setup
 
-### Single-Key Archive (Gmail-style)
+1. Enable **Keyboard Shortcuts** in the Mail+ menu bar popover
+2. Grant **Accessibility** permission when prompted (System Settings > Privacy & Security > Accessibility)
 
-macOS doesn't allow single non-modifier keys in App Shortcuts. For single-key mappings, use:
+### Archive Notes
 
-- **[Karabiner-Elements](https://karabiner-elements.pqrs.org/)** — remap `\` to `Ctrl+Cmd+A` when Mail.app is focused
-- **[Hammerspoon](https://www.hammerspoon.org/)** — Lua-scriptable hotkeys with app-specific rules
-
-Example Hammerspoon config:
-```lua
-hs.hotkey.bind({}, "\\", function()
-  local app = hs.application.frontmostApplication()
-  if app:bundleID() == "com.apple.mail" then
-    hs.eventtap.keyStroke({"ctrl", "cmd"}, "a")
-  end
-end)
-```
+Archive (`a`) requires an account type that supports archiving (IMAP/Gmail). POP accounts do not have an archive mailbox.
 
 ## Requirements
 

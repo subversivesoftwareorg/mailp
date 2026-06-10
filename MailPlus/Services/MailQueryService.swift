@@ -31,6 +31,49 @@ final class MailQueryService: Sendable {
         return Self.parseAccountOutput(output)
     }
 
+    // MARK: - Selection
+
+    struct SelectedMessage {
+        let subject: String
+        let accountName: String
+        let mailboxName: String
+    }
+
+    func fetchSelectedMessage() async throws -> SelectedMessage? {
+        let script = """
+        tell application "Mail"
+            set sel to selection
+            if (count of sel) > 0 then
+                set msg to item 1 of sel
+                set subj to subject of msg
+                set mbox to mailbox of msg
+                set mboxName to name of mbox
+                set acctName to name of account of mbox
+                return subj & "\\t" & acctName & "\\t" & mboxName
+            else
+                return ""
+            end if
+        end tell
+        """
+        let output = try await runAppleScript(script)
+        guard !output.isEmpty else { return nil }
+        let parts = output.split(separator: "\t", omittingEmptySubsequences: false).map(String.init)
+        guard parts.count >= 3 else { return nil }
+        return SelectedMessage(subject: parts[0], accountName: parts[1], mailboxName: parts[2])
+    }
+
+    func forwardSelectedMessage() async throws {
+        let script = """
+        tell application "Mail"
+            set sel to selection
+            if (count of sel) > 0 then
+                forward (item 1 of sel)
+            end if
+        end tell
+        """
+        _ = try await runAppleScript(script)
+    }
+
     // MARK: - Message Operations
 
     func moveMessageToMailbox(subject: String, fromMailbox: String, toMailbox: String, account: String) async throws {

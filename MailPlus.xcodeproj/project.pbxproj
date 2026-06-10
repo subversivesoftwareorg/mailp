@@ -24,6 +24,7 @@
 		A2F08BEBF90936FF7024C580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1114027D536EA6726606428 /* AppDelegate.swift */; };
 		D3F22941FBC10C9FC2CF024A /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D78CEE2D2CC74525B1A080 /* AccountRow.swift */; };
 		D3E4F5A6B7C8D9E0F1A2B3C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		FC8CED871512624EFF27B205 /* MailPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		B441E18DE943228A465538AF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */,
 				673A3029C3C6B16163FCBC44 /* MailQueryService.swift */,
 				228BD98AA62E68C4E28B8B40 /* SnoozeService.swift */,
 			);
@@ -305,6 +308,7 @@
 				8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */,
 				4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */,
 				7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */,
 				5F0909488EAA6510C36F2548 /* MailQueryService.swift in Sources */,
 				7C594FD507D8337FF2DAB426 /* PopoverView.swift in Sources */,
 				39AF381604710ED38611D927 /* SnoozeService.swift in Sources */,

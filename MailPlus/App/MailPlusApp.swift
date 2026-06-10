@@ -8,21 +8,26 @@ struct MailPlusApp: App {
     let modelContainer: ModelContainer
     let statsStore: StatsStore
     let snoozeService: SnoozeService
+    let keyboardService: KeyboardShortcutService
 
     init() {
         let schema = Schema([ActivityRecord.self, SnoozedMessage.self])
         let config = ModelConfiguration("MailPlus", schema: schema)
         let container = try! ModelContainer(for: schema, configurations: [config])
 
+        let snooze = SnoozeService(modelContainer: container)
+
         self.modelContainer = container
         self.statsStore = StatsStore(modelContainer: container)
-        self.snoozeService = SnoozeService(modelContainer: container)
+        self.snoozeService = snooze
+        self.keyboardService = KeyboardShortcutService(snoozeService: snooze)
     }
 
     var body: some Scene {
         MenuBarExtra {
             PopoverView()
                 .environment(statsStore)
+                .environment(keyboardService)
         } label: {
             Label(
                 statsStore.totalUnread > 0 ? "\(statsStore.totalUnread)" : "",
