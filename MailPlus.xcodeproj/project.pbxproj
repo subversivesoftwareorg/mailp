@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		064167EB6B0F8C08F15F76E6 /* SnoozedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16C68DE238813D651E4B8F /* SnoozedMessage.swift */; };
+		123B892D8E57FBC6C26D4A62 /* MailPlusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */; };
+		31725A6C00A0592BE618E291 /* StatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4696B8C13C8DC1742F83D482 /* StatsStore.swift */; };
+		37DA0625DE930A4DB633E4FE /* ActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B527CFBDC171928E85A04 /* ActivityRecord.swift */; };
+		39AF381604710ED38611D927 /* SnoozeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228BD98AA62E68C4E28B8B40 /* SnoozeService.swift */; };
+		4036F966C2A0CF74CAB1FB6A /* MailKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B703B40E262B9978B569DD25 /* MailKit.framework */; };
+		43B622074DC820BB9C916789 /* MailPlusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B767F7AFB255E310228475 /* DashboardView.swift */; };
+		5F0909488EAA6510C36F2548 /* MailQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A3029C3C6B16163FCBC44 /* MailQueryService.swift */; };
+		7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */; };
+		7C594FD507D8337FF2DAB426 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2283C6AAD40CBD51879708D /* PopoverView.swift */; };
+		81EF79D52EB7F405AA992862 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */; };
+		8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39DDBEB6F095A947DE9E377 /* Constants.swift */; };
+		951779911B73A3953D601D2E /* AccountSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882356B2873F5BFB8908734 /* AccountSnapshot.swift */; };
+		A2F08BEBF90936FF7024C580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1114027D536EA6726606428 /* AppDelegate.swift */; };
+		D3F22941FBC10C9FC2CF024A /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D78CEE2D2CC74525B1A080 /* AccountRow.swift */; };
+		D3E4F5A6B7C8D9E0F1A2B3C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BD7A115673AD66DA2CE587E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F60BA130BC393764FE992B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7C8247E4E3DF06C47056C7F;
+			remoteInfo = MailPlusExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3C5016B33A50933221B2F68D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				43B622074DC820BB9C916789 /* MailPlusExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		16B767F7AFB255E310228475 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		228BD98AA62E68C4E28B8B40 /* SnoozeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozeService.swift; sourceTree = "<group>"; };
+		4696B8C13C8DC1742F83D482 /* StatsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsStore.swift; sourceTree = "<group>"; };
+		5C16C68DE238813D651E4B8F /* SnoozedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozedMessage.swift; sourceTree = "<group>"; };
+		673A3029C3C6B16163FCBC44 /* MailQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailQueryService.swift; sourceTree = "<group>"; };
+		67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPlusExtension.swift; sourceTree = "<group>"; };
+		907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MailPlusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D78CEE2D2CC74525B1A080 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
+		A27B527CFBDC171928E85A04 /* ActivityRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRecord.swift; sourceTree = "<group>"; };
+		A882356B2873F5BFB8908734 /* AccountSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSnapshot.swift; sourceTree = "<group>"; };
+		B2283C6AAD40CBD51879708D /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		B703B40E262B9978B569DD25 /* MailKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MailKit.framework; path = System/Library/Frameworks/MailKit.framework; sourceTree = SDKROOT; };
+		C1114027D536EA6726606428 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPlusApp.swift; sourceTree = "<group>"; };
+		D39DDBEB6F095A947DE9E377 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
+		FC8CED871512624EFF27B205 /* MailPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0CE26DD3F86718FFC3492C0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4036F966C2A0CF74CAB1FB6A /* MailKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		074BE7C7BFA8E75136C23A83 /* MailPlusExtension */ = {
+			isa = PBXGroup;
+			children = (
+				67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */,
+			);
+			path = MailPlusExtension;
+			sourceTree = "<group>";
+		};
+		1583BDDA0EEDEA501189F07D /* MailPlus */ = {
+			isa = PBXGroup;
+			children = (
+				D39DDBEB6F095A947DE9E377 /* Constants.swift */,
+				96921BAF90CBA5610A727EE5 /* App */,
+				49A382CA36287C3CC9F61ECC /* Models */,
+				E2D3C4B5A6F7E8D9C0B1A2F3 /* Resources */,
+				B441E18DE943228A465538AF /* Services */,
+				5CFD74E881D614F93E8F0A09 /* Store */,
+				8AC6E72D89870BB624FA6323 /* Views */,
+			);
+			path = MailPlus;
+			sourceTree = "<group>";
+		};
+		437D6B997F8504FF565CE762 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC8CED871512624EFF27B205 /* MailPlus.app */,
+				907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49921AB7CDC0639AA71D2EF8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		49A382CA36287C3CC9F61ECC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A882356B2873F5BFB8908734 /* AccountSnapshot.swift */,
+				A27B527CFBDC171928E85A04 /* ActivityRecord.swift */,
+				5C16C68DE238813D651E4B8F /* SnoozedMessage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		54614A71153275DE56D13BFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B703B40E262B9978B569DD25 /* MailKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5CFD74E881D614F93E8F0A09 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				4696B8C13C8DC1742F83D482 /* StatsStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E2D3C4B5A6F7E8D9C0B1A2F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5EE89A6BF4886A990D8315C3 = {
+			isa = PBXGroup;
+			children = (
+				1583BDDA0EEDEA501189F07D /* MailPlus */,
+				074BE7C7BFA8E75136C23A83 /* MailPlusExtension */,
+				54614A71153275DE56D13BFA /* Frameworks */,
+				437D6B997F8504FF565CE762 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8AC6E72D89870BB624FA6323 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				91D78CEE2D2CC74525B1A080 /* AccountRow.swift */,
+				16B767F7AFB255E310228475 /* DashboardView.swift */,
+				B2283C6AAD40CBD51879708D /* PopoverView.swift */,
+				49921AB7CDC0639AA71D2EF8 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96921BAF90CBA5610A727EE5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C1114027D536EA6726606428 /* AppDelegate.swift */,
+				C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B441E18DE943228A465538AF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				673A3029C3C6B16163FCBC44 /* MailQueryService.swift */,
+				228BD98AA62E68C4E28B8B40 /* SnoozeService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		828E88BAEB313AB1B8D68AFB /* MailPlus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "MailPlus" */;
+			buildPhases = (
+				E4147E4DCD7B01831AC0B014 /* Sources */,
+				C4D5E6F7A8B9C0D1E2F3A4B5 /* Resources */,
+				3C5016B33A50933221B2F68D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0090D3D69A5938400B407D36 /* PBXTargetDependency */,
+			);
+			name = MailPlus;
+			packageProductDependencies = (
+			);
+			productName = MailPlus;
+			productReference = FC8CED871512624EFF27B205 /* MailPlus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D7C8247E4E3DF06C47056C7F /* MailPlusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "MailPlusExtension" */;
+			buildPhases = (
+				E1E62C03062A2C0579AC1059 /* Sources */,
+				0CE26DD3F86718FFC3492C0A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MailPlusExtension;
+			packageProductDependencies = (
+			);
+			productName = MailPlusExtension;
+			productReference = 907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F60BA130BC393764FE992B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					828E88BAEB313AB1B8D68AFB = {
+						DevelopmentTeam = 84CC987JU3;
+					};
+					D7C8247E4E3DF06C47056C7F = {
+						DevelopmentTeam = 84CC987JU3;
+					};
+				};
+			};
+			buildConfigurationList = 7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "MailPlus" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5EE89A6BF4886A990D8315C3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 437D6B997F8504FF565CE762 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				828E88BAEB313AB1B8D68AFB /* MailPlus */,
+				D7C8247E4E3DF06C47056C7F /* MailPlusExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4D5E6F7A8B9C0D1E2F3A4B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E4F5A6B7C8D9E0F1A2B3C4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1E62C03062A2C0579AC1059 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123B892D8E57FBC6C26D4A62 /* MailPlusExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4147E4DCD7B01831AC0B014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81EF79D52EB7F405AA992862 /* AccountDetailView.swift in Sources */,
+				D3F22941FBC10C9FC2CF024A /* AccountRow.swift in Sources */,
+				951779911B73A3953D601D2E /* AccountSnapshot.swift in Sources */,
+				37DA0625DE930A4DB633E4FE /* ActivityRecord.swift in Sources */,
+				A2F08BEBF90936FF7024C580 /* AppDelegate.swift in Sources */,
+				8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */,
+				4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */,
+				7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */,
+				5F0909488EAA6510C36F2548 /* MailQueryService.swift in Sources */,
+				7C594FD507D8337FF2DAB426 /* PopoverView.swift in Sources */,
+				39AF381604710ED38611D927 /* SnoozeService.swift in Sources */,
+				064167EB6B0F8C08F15F76E6 /* SnoozedMessage.swift in Sources */,
+				31725A6C00A0592BE618E291 /* StatsStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0090D3D69A5938400B407D36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7C8247E4E3DF06C47056C7F /* MailPlusExtension */;
+			targetProxy = 4BD7A115673AD66DA2CE587E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3F228FE5F1316F48F1CFE485 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MailPlus.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus;
+				PRODUCT_NAME = "Mail+";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5BF0D3BF6C62CA0366718AFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = MailPlusExtension/MailPlusExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MailPlusExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus.extension;
+				PRODUCT_NAME = MailPlusExtension;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5C54F1F9A7153C68B66C4170 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = MailPlusExtension/MailPlusExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MailPlusExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus.extension;
+				PRODUCT_NAME = MailPlusExtension;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		92D833103234B7D6FEACE304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 84CC987JU3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BE79900A683E433FF4D789C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MailPlus.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus;
+				PRODUCT_NAME = "Mail+";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C9F9755E83CD0FEC972AF55B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 84CC987JU3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "MailPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE79900A683E433FF4D789C1 /* Debug */,
+				3F228FE5F1316F48F1CFE485 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "MailPlusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C54F1F9A7153C68B66C4170 /* Debug */,
+				5BF0D3BF6C62CA0366718AFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "MailPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9F9755E83CD0FEC972AF55B /* Debug */,
+				92D833103234B7D6FEACE304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F60BA130BC393764FE992B5 /* Project object */;
+}

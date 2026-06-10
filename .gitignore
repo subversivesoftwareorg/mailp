@@ -1,0 +1,17 @@
+## macOS
+.DS_Store
+
+## Xcode
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+DerivedData/
+build/
+
+## Swift Package Manager
+.build/
+.swiftpm/
+
+## Editor artifacts
+*.swp
+*~
