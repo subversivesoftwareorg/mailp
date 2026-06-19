@@ -300,6 +300,29 @@ final class KeyboardShortcutService {
 
         Self.postKeystrokeStatic(keyCode: 2, flags: [.maskCommand, .maskShift])
 
+        var body = "Sent to: \(Self.escaped(recipients))"
+
+        // Wait for the message to land in Sent, then grab its message-id
+        try? await Task.sleep(for: .seconds(3))
+        let lookupScript = """
+        tell application "Mail"
+            repeat with acct in every account
+                try
+                    set sentBox to sent mailbox of acct
+                    set msgs to (every message of sentBox whose subject is "\(Self.escaped(subject))")
+                    if (count of msgs) > 0 then
+                        return message id of item 1 of msgs
+                    end if
+                end try
+            end repeat
+            return ""
+        end tell
+        """
+        if let msgID = try? await runScript(lookupScript), !msgID.isEmpty {
+            let url = Self.mailURL(from: msgID)
+            body += "\nOpen in Mail: \(Self.escaped(url))"
+        }
+
         let createScript = """
         tell application "Reminders"
             set taskList to default list
@@ -307,7 +330,7 @@ final class KeyboardShortcutService {
             set hours of dueDate to 9
             set minutes of dueDate to 0
             set seconds of dueDate to 0
-            make new reminder in taskList with properties {name:"Follow up: \(Self.escaped(subject))", body:"Sent to: \(Self.escaped(recipients))", due date:dueDate}
+            make new reminder in taskList with properties {name:"Follow up: \(Self.escaped(subject))", body:"\(body)", due date:dueDate}
         end tell
         """
         if (try? await runScript(createScript)) != nil {
@@ -334,17 +357,22 @@ final class KeyboardShortcutService {
             set msg to item 1 of sel
             set subj to subject of msg
             set sndr to sender of msg
-            return subj & "\\t" & sndr
+            set msgID to message id of msg
+            return subj & "\\t" & sndr & "\\t" & msgID
         end tell
         """
         guard let output = try? await runScript(script), !output.isEmpty else {
             NSSound.beep()
             return
         }
-        let parts = output.split(separator: "\t", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+        let parts = output.split(separator: "\t", maxSplits: 2, omittingEmptySubsequences: false).map(String.init)
         guard parts.count >= 2 else { NSSound.beep(); return }
         let subject = parts[0]
         let sender = parts[1]
+        let messageURL = parts.count >= 3 ? Self.mailURL(from: parts[2]) : nil
+
+        var body = "From: \(Self.escaped(sender))"
+        if let url = messageURL { body += "\nOpen in Mail: \(Self.escaped(url))" }
 
         let createScript = """
         tell application "Reminders"
@@ -353,7 +381,7 @@ final class KeyboardShortcutService {
             set hours of dueDate to 9
             set minutes of dueDate to 0
             set seconds of dueDate to 0
-            make new reminder in taskList with properties {name:"Follow up: \(Self.escaped(subject))", body:"From: \(Self.escaped(sender))", due date:dueDate}
+            make new reminder in taskList with properties {name:"Follow up: \(Self.escaped(subject))", body:"\(body)", due date:dueDate}
         end tell
         """
         if (try? await runScript(createScript)) != nil {
@@ -398,6 +426,14 @@ final class KeyboardShortcutService {
     private static func escaped(_ s: String) -> String {
         s.replacingOccurrences(of: "\\", with: "\\\\")
          .replacingOccurrences(of: "\"", with: "\\\"")
+    }
+
+    nonisolated static func mailURL(from messageID: String) -> String {
+        let raw = messageID
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
+        let encoded = raw.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? raw
+        return "message://%3C\(encoded)%3E"
     }
 
     func blockSender(domain: Bool) async {

@@ -129,6 +129,25 @@ struct EmailExtractionTests {
     }
 }
 
+@Suite("Mail URL Construction")
+struct MailURLTests {
+
+    @Test func constructsFromAngleBrackets() {
+        let url = KeyboardShortcutService.mailURL(from: "<ABC123@mail.gmail.com>")
+        #expect(url == "message://%3CABC123@mail.gmail.com%3E")
+    }
+
+    @Test func constructsFromBareID() {
+        let url = KeyboardShortcutService.mailURL(from: "ABC123@mail.gmail.com")
+        #expect(url == "message://%3CABC123@mail.gmail.com%3E")
+    }
+
+    @Test func handlesWhitespace() {
+        let url = KeyboardShortcutService.mailURL(from: "  <ABC@test.com>  \n")
+        #expect(url == "message://%3CABC@test.com%3E")
+    }
+}
+
 @Suite("AccountSnapshot")
 struct AccountSnapshotTests {
 
