@@ -20,14 +20,15 @@ final class KeyboardShortcutService {
     private var accessibilityPollTask: Task<Void, Never>?
     private let queryService = MailQueryService()
 
-    // CGKeyCode values: a=0  d=2  f=3  h=4  j=38  k=40  r=15  t=17
+    // CGKeyCode values: a=0  d=2  f=3  h=4  j=38  k=40  r=15  t=17  /=44
     nonisolated(unsafe) static let keyActions: [UInt16: Action] = [
         0: .archive, 2: .delete, 3: .forward, 4: .remindTonight,
         15: .reply, 17: .createTask, 38: .remindTomorrow, 40: .remindLater,
+        44: .search,
     ]
 
     enum Action {
-        case delete, archive, reply, forward, createTask
+        case delete, archive, reply, forward, createTask, search
         case remindTonight, remindTomorrow, remindLater
     }
 
@@ -206,6 +207,8 @@ final class KeyboardShortcutService {
             Task { @MainActor in
                 await service.createTaskFromEmail()
             }
+        case .search:
+            postKeystrokeStatic(keyCode: 3, flags: [.maskCommand, .maskAlternate])
         }
         return nil
     }

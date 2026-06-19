@@ -67,7 +67,7 @@ struct AccountParsingTests {
 struct KeyMappingTests {
 
     @Test func allShortcutKeysAreMapped() {
-        // a=0, d=2, f=3, h=4, r=15, j=38, k=40
+        // a=0, d=2, f=3, h=4, r=15, t=17, j=38, k=40, /=44
         #expect(KeyboardShortcutService.keyActions[0] == .archive)
         #expect(KeyboardShortcutService.keyActions[2] == .delete)
         #expect(KeyboardShortcutService.keyActions[3] == .forward)
@@ -76,6 +76,7 @@ struct KeyMappingTests {
         #expect(KeyboardShortcutService.keyActions[17] == .createTask)
         #expect(KeyboardShortcutService.keyActions[38] == .remindTomorrow)
         #expect(KeyboardShortcutService.keyActions[40] == .remindLater)
+        #expect(KeyboardShortcutService.keyActions[44] == .search)
     }
 
     @Test func unmappedKeysReturnNil() {
@@ -84,8 +85,8 @@ struct KeyMappingTests {
         #expect(KeyboardShortcutService.keyActions[99] == nil)
     }
 
-    @Test func exactlyEightShortcuts() {
-        #expect(KeyboardShortcutService.keyActions.count == 8)
+    @Test func exactlyNineShortcuts() {
+        #expect(KeyboardShortcutService.keyActions.count == 9)
     }
 
     @Test func cmdSKeyCodeIsNotInSingleKeyMap() {
