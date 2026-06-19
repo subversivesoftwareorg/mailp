@@ -39,10 +39,14 @@ struct TriageApp: App {
                 .environment(statsStore)
                 .environment(keyboardService)
         } label: {
-            Label(
-                statsStore.totalUnread > 0 ? "\(statsStore.totalUnread)" : "",
-                systemImage: statsStore.totalUnread > 0 ? "envelope.badge.fill" : "envelope"
-            )
+            HStack(spacing: 4) {
+                Image("MenuBarIcon")
+                    .renderingMode(.template)
+                if statsStore.totalUnread > 0 {
+                    Text("\(statsStore.totalUnread)")
+                        .monospacedDigit()
+                }
+            }
         }
         .menuBarExtraStyle(.window)
 
