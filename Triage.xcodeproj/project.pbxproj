@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		064167EB6B0F8C08F15F76E6 /* SnoozedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16C68DE238813D651E4B8F /* SnoozedMessage.swift */; };
-		123B892D8E57FBC6C26D4A62 /* MailPlusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */; };
+		123B892D8E57FBC6C26D4A62 /* TriageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F94C9D2C39DCA77EC91B80 /* TriageExtension.swift */; };
 		31725A6C00A0592BE618E291 /* StatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4696B8C13C8DC1742F83D482 /* StatsStore.swift */; };
 		37DA0625DE930A4DB633E4FE /* ActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27B527CFBDC171928E85A04 /* ActivityRecord.swift */; };
 		39AF381604710ED38611D927 /* SnoozeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228BD98AA62E68C4E28B8B40 /* SnoozeService.swift */; };
 		4036F966C2A0CF74CAB1FB6A /* MailKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B703B40E262B9978B569DD25 /* MailKit.framework */; };
-		43B622074DC820BB9C916789 /* MailPlusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43B622074DC820BB9C916789 /* TriageExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 907C5D11FB7178839F8140E6 /* TriageExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B767F7AFB255E310228475 /* DashboardView.swift */; };
 		5F0909488EAA6510C36F2548 /* MailQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A3029C3C6B16163FCBC44 /* MailQueryService.swift */; };
-		7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */; };
+		7A314D2084E6C1CE13F7678A /* TriageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E9E4693D4D84C2D0E58B07 /* TriageApp.swift */; };
 		7C594FD507D8337FF2DAB426 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2283C6AAD40CBD51879708D /* PopoverView.swift */; };
 		81EF79D52EB7F405AA992862 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */; };
 		8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39DDBEB6F095A947DE9E377 /* Constants.swift */; };
@@ -27,6 +27,7 @@
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */; };
 		C2D3E4F5A6B7C8D9E0F1A2B3 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F6A7B8C9D0E1F2A3B4C5 /* IntroView.swift */; };
 		E5F6A7B8C9D0E1F2A3B4C5D6 /* BlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* BlocksView.swift */; };
+		F2A3B4C5D6E7F8A9B0C1D2E3 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2A3B4C5D6E7F8A9B0C1D2 /* CheckForUpdatesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 			containerPortal = 3F60BA130BC393764FE992B5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D7C8247E4E3DF06C47056C7F;
-			remoteInfo = MailPlusExtension;
+			remoteInfo = TriageExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				43B622074DC820BB9C916789 /* MailPlusExtension.appex in Embed Foundation Extensions */,
+				43B622074DC820BB9C916789 /* TriageExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,22 +60,23 @@
 		4696B8C13C8DC1742F83D482 /* StatsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsStore.swift; sourceTree = "<group>"; };
 		5C16C68DE238813D651E4B8F /* SnoozedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozedMessage.swift; sourceTree = "<group>"; };
 		673A3029C3C6B16163FCBC44 /* MailQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailQueryService.swift; sourceTree = "<group>"; };
-		67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPlusExtension.swift; sourceTree = "<group>"; };
-		907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MailPlusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		67F94C9D2C39DCA77EC91B80 /* TriageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageExtension.swift; sourceTree = "<group>"; };
+		907C5D11FB7178839F8140E6 /* TriageExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TriageExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D78CEE2D2CC74525B1A080 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
 		A27B527CFBDC171928E85A04 /* ActivityRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRecord.swift; sourceTree = "<group>"; };
 		A882356B2873F5BFB8908734 /* AccountSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSnapshot.swift; sourceTree = "<group>"; };
 		B2283C6AAD40CBD51879708D /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		B703B40E262B9978B569DD25 /* MailKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MailKit.framework; path = System/Library/Frameworks/MailKit.framework; sourceTree = SDKROOT; };
 		C1114027D536EA6726606428 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPlusApp.swift; sourceTree = "<group>"; };
+		C1E9E4693D4D84C2D0E58B07 /* TriageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageApp.swift; sourceTree = "<group>"; };
 		D39DDBEB6F095A947DE9E377 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
-		FC8CED871512624EFF27B205 /* MailPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC8CED871512624EFF27B205 /* Triage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A2B3C4D5E6F7A8B9C0D1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* KeyboardShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutService.swift; sourceTree = "<group>"; };
 		D4E5F6A7B8C9D0E1F2A3B4C5 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		F6A7B8C9D0E1F2A3B4C5D6E7 /* BlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksView.swift; sourceTree = "<group>"; };
+		E1F2A3B4C5D6E7F8A9B0C1D2 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,18 +88,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5D6E7F8A9B0C1D2E3F4A5B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		074BE7C7BFA8E75136C23A83 /* MailPlusExtension */ = {
+		074BE7C7BFA8E75136C23A83 /* TriageExtension */ = {
 			isa = PBXGroup;
 			children = (
-				67F94C9D2C39DCA77EC91B80 /* MailPlusExtension.swift */,
+				67F94C9D2C39DCA77EC91B80 /* TriageExtension.swift */,
 			);
-			path = MailPlusExtension;
+			path = TriageExtension;
 			sourceTree = "<group>";
 		};
-		1583BDDA0EEDEA501189F07D /* MailPlus */ = {
+		1583BDDA0EEDEA501189F07D /* Triage */ = {
 			isa = PBXGroup;
 			children = (
 				D39DDBEB6F095A947DE9E377 /* Constants.swift */,
@@ -108,14 +117,14 @@
 				5CFD74E881D614F93E8F0A09 /* Store */,
 				8AC6E72D89870BB624FA6323 /* Views */,
 			);
-			path = MailPlus;
+			path = Triage;
 			sourceTree = "<group>";
 		};
 		437D6B997F8504FF565CE762 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FC8CED871512624EFF27B205 /* MailPlus.app */,
-				907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */,
+				FC8CED871512624EFF27B205 /* Triage.app */,
+				907C5D11FB7178839F8140E6 /* TriageExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7667A9EDE745487CDDE36F /* AccountDetailView.swift */,
+				E1F2A3B4C5D6E7F8A9B0C1D2 /* CheckForUpdatesView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -165,8 +175,8 @@
 		5EE89A6BF4886A990D8315C3 = {
 			isa = PBXGroup;
 			children = (
-				1583BDDA0EEDEA501189F07D /* MailPlus */,
-				074BE7C7BFA8E75136C23A83 /* MailPlusExtension */,
+				1583BDDA0EEDEA501189F07D /* Triage */,
+				074BE7C7BFA8E75136C23A83 /* TriageExtension */,
 				54614A71153275DE56D13BFA /* Frameworks */,
 				437D6B997F8504FF565CE762 /* Products */,
 			);
@@ -189,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				C1114027D536EA6726606428 /* AppDelegate.swift */,
-				C1E9E4693D4D84C2D0E58B07 /* MailPlusApp.swift */,
+				C1E9E4693D4D84C2D0E58B07 /* TriageApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -207,11 +217,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		828E88BAEB313AB1B8D68AFB /* MailPlus */ = {
+		828E88BAEB313AB1B8D68AFB /* Triage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "MailPlus" */;
+			buildConfigurationList = 051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "Triage" */;
 			buildPhases = (
 				E4147E4DCD7B01831AC0B014 /* Sources */,
+				C5D6E7F8A9B0C1D2E3F4A5B6 /* Frameworks */,
 				C4D5E6F7A8B9C0D1E2F3A4B5 /* Resources */,
 				3C5016B33A50933221B2F68D /* Embed Foundation Extensions */,
 			);
@@ -220,16 +231,17 @@
 			dependencies = (
 				0090D3D69A5938400B407D36 /* PBXTargetDependency */,
 			);
-			name = MailPlus;
+			name = Triage;
 			packageProductDependencies = (
+				B4C5D6E7F8A9B0C1D2E3F4A5 /* Sparkle */,
 			);
-			productName = MailPlus;
-			productReference = FC8CED871512624EFF27B205 /* MailPlus.app */;
+			productName = Triage;
+			productReference = FC8CED871512624EFF27B205 /* Triage.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D7C8247E4E3DF06C47056C7F /* MailPlusExtension */ = {
+		D7C8247E4E3DF06C47056C7F /* TriageExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "MailPlusExtension" */;
+			buildConfigurationList = 67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "TriageExtension" */;
 			buildPhases = (
 				E1E62C03062A2C0579AC1059 /* Sources */,
 				0CE26DD3F86718FFC3492C0A /* Frameworks */,
@@ -238,11 +250,11 @@
 			);
 			dependencies = (
 			);
-			name = MailPlusExtension;
+			name = TriageExtension;
 			packageProductDependencies = (
 			);
-			productName = MailPlusExtension;
-			productReference = 907C5D11FB7178839F8140E6 /* MailPlusExtension.appex */;
+			productName = TriageExtension;
+			productReference = 907C5D11FB7178839F8140E6 /* TriageExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -262,7 +274,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "MailPlus" */;
+			buildConfigurationList = 7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "Triage" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -271,13 +283,16 @@
 			);
 			mainGroup = 5EE89A6BF4886A990D8315C3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A3B4C5D6E7F8A9B0C1D2E3F4 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 437D6B997F8504FF565CE762 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				828E88BAEB313AB1B8D68AFB /* MailPlus */,
-				D7C8247E4E3DF06C47056C7F /* MailPlusExtension */,
+				828E88BAEB313AB1B8D68AFB /* Triage */,
+				D7C8247E4E3DF06C47056C7F /* TriageExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -298,7 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				123B892D8E57FBC6C26D4A62 /* MailPlusExtension.swift in Sources */,
+				123B892D8E57FBC6C26D4A62 /* TriageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +328,7 @@
 				A2F08BEBF90936FF7024C580 /* AppDelegate.swift in Sources */,
 				8C43513199D07E7E75D25DD2 /* Constants.swift in Sources */,
 				4A963E7E462A9DEEF03193EE /* DashboardView.swift in Sources */,
-				7A314D2084E6C1CE13F7678A /* MailPlusApp.swift in Sources */,
+				7A314D2084E6C1CE13F7678A /* TriageApp.swift in Sources */,
 				E5F6A7B8C9D0E1F2A3B4C5D6 /* BlocksView.swift in Sources */,
 				C2D3E4F5A6B7C8D9E0F1A2B3 /* IntroView.swift in Sources */,
 				A1B2C3D4E5F6A7B8C9D0E1F2 /* KeyboardShortcutService.swift in Sources */,
@@ -322,6 +337,7 @@
 				39AF381604710ED38611D927 /* SnoozeService.swift in Sources */,
 				064167EB6B0F8C08F15F76E6 /* SnoozedMessage.swift in Sources */,
 				31725A6C00A0592BE618E291 /* StatsStore.swift in Sources */,
+				F2A3B4C5D6E7F8A9B0C1D2E3 /* CheckForUpdatesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +346,7 @@
 /* Begin PBXTargetDependency section */
 		0090D3D69A5938400B407D36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D7C8247E4E3DF06C47056C7F /* MailPlusExtension */;
+			target = D7C8247E4E3DF06C47056C7F /* TriageExtension */;
 			targetProxy = 4BD7A115673AD66DA2CE587E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -341,7 +357,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MailPlus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Triage.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Info.plist;
@@ -349,9 +365,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus;
-				PRODUCT_NAME = "Mail+";
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.triage;
+				PRODUCT_NAME = Triage;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -360,16 +376,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_ENTITLEMENTS = MailPlusExtension/MailPlusExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TriageExtension/TriageExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MailPlusExtension/Info.plist;
+				INFOPLIST_FILE = TriageExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus.extension;
-				PRODUCT_NAME = MailPlusExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.triage.extension;
+				PRODUCT_NAME = TriageExtension;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -378,16 +394,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_ENTITLEMENTS = MailPlusExtension/MailPlusExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TriageExtension/TriageExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MailPlusExtension/Info.plist;
+				INFOPLIST_FILE = TriageExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus.extension;
-				PRODUCT_NAME = MailPlusExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.triage.extension;
+				PRODUCT_NAME = TriageExtension;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -455,7 +471,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MailPlus.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Triage.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Info.plist;
@@ -463,9 +479,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.mailplus;
-				PRODUCT_NAME = "Mail+";
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subversivesoftware.triage;
+				PRODUCT_NAME = Triage;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -538,7 +554,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "MailPlus" */ = {
+		051E96539230336EF2314B96 /* Build configuration list for PBXNativeTarget "Triage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE79900A683E433FF4D789C1 /* Debug */,
@@ -547,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "MailPlusExtension" */ = {
+		67F81A9BD98DAFDFC4099ED3 /* Build configuration list for PBXNativeTarget "TriageExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C54F1F9A7153C68B66C4170 /* Debug */,
@@ -556,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "MailPlus" */ = {
+		7B287916BABDE1B7020CAC0B /* Build configuration list for PBXProject "Triage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9F9755E83CD0FEC972AF55B /* Debug */,
@@ -566,6 +582,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A3B4C5D6E7F8A9B0C1D2E3F4 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4C5D6E7F8A9B0C1D2E3F4A5 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B4C5D6E7F8A9B0C1D2E3F4 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F60BA130BC393764FE992B5 /* Project object */;
 }

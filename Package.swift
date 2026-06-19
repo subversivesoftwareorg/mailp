@@ -3,18 +3,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "MailPlus",
+    name: "Triage",
     platforms: [.macOS(.v14)],
+    dependencies: [
+        .package(url: "https://github.com/sparkle-project/Sparkle", from: "2.0.0"),
+    ],
     targets: [
         .executableTarget(
-            name: "MailPlus",
-            path: "MailPlus",
+            name: "Triage",
+            dependencies: ["Sparkle"],
+            path: "Triage",
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .testTarget(
-            name: "MailPlusTests",
-            dependencies: ["MailPlus"],
-            path: "MailPlusTests"
+            name: "TriageTests",
+            dependencies: ["Triage"],
+            path: "TriageTests"
         ),
     ]
 )

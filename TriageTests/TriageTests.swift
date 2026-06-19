@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import MailPlus
+@testable import Triage
 
 @Suite("Snooze Duration")
 struct SnoozeDurationTests {

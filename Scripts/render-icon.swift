@@ -4,7 +4,7 @@ import AppKit
 import CoreGraphics
 import Foundation
 
-// Render the Mail+ app icon: a white envelope with a green "+" badge
+// Render the Triage app icon: a white envelope with a green "+" badge
 // on a deep-blue gradient background.
 //
 // Usage:
@@ -219,7 +219,7 @@ if scriptPath.contains("/Scripts/") {
     projectDir = FileManager.default.currentDirectoryPath
 }
 
-let assetDir = projectDir + "/MailPlus/Resources/Assets.xcassets/AppIcon.appiconset"
+let assetDir = projectDir + "/Triage/Resources/Assets.xcassets/AppIcon.appiconset"
 
 if CommandLine.arguments.count > 1 && CommandLine.arguments[1] == "preview" {
     let buildDir = projectDir + "/.build"
@@ -245,7 +245,7 @@ let sizes: [(CGFloat, String)] = [
     (1024, "icon_512x512@2x.png"),
 ]
 
-print("Rendering Mail+ icon...")
+print("Rendering Triage icon...")
 for (px, filename) in sizes {
     savePNG(renderIcon(size: px), to: assetDir + "/" + filename)
 }
@@ -255,5 +255,5 @@ let buildDir = projectDir + "/.build"
 try? FileManager.default.createDirectory(atPath: buildDir, withIntermediateDirectories: true)
 savePNG(renderIcon(size: 1024), to: buildDir + "/icon-1024.png")
 
-print("\nDone! Icon installed to MailPlus/Resources/Assets.xcassets/AppIcon.appiconset/")
+print("\nDone! Icon installed to Triage/Resources/Assets.xcassets/AppIcon.appiconset/")
 print("Preview: open .build/icon-1024.png")

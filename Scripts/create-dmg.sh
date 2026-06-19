@@ -1,10 +1,10 @@
 #!/bin/sh
 set -e
 
-# Build and package Mail+ as a signed, notarized DMG for distribution.
+# Build and package Triage as a signed, notarized DMG for distribution.
 #
-# Mail+ has two targets: the main menu bar app and an embedded MailKit
-# extension (MailPlusExtension.appex). Both are signed independently
+# Triage has two targets: the main menu bar app and an embedded MailKit
+# extension (TriageExtension.appex). Both are signed independently
 # with their own entitlements before the DMG is created.
 #
 # Prerequisites:
@@ -19,10 +19,10 @@ set -e
 #   ./Scripts/create-dmg.sh                   # full build + sign + notarize
 #   ./Scripts/create-dmg.sh --skip-notarize   # build + sign only
 
-APP_NAME="MailPlus"
-PRODUCT_NAME="Mail+"
-BUNDLE_ID="com.subversivesoftware.mailplus"
-EXTENSION_NAME="MailPlusExtension"
+APP_NAME="Triage"
+PRODUCT_NAME="Triage"
+BUNDLE_ID="com.subversivesoftware.triage"
+EXTENSION_NAME="TriageExtension"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
@@ -37,7 +37,7 @@ NEW_BUILD=$((CURRENT_BUILD + 1))
 echo "==> Incrementing build number: $CURRENT_BUILD → $NEW_BUILD"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_BUILD" "$PLIST"
 
-DMG_NAME="MailPlus-${VERSION}-b${NEW_BUILD}.dmg"
+DMG_NAME="Triage-${VERSION}-b${NEW_BUILD}.dmg"
 DMG_PATH="$BUILD_DIR/$DMG_NAME"
 STAGING_DIR="$BUILD_DIR/dmg-staging"
 NOTARIZE_TIMEOUT="15m"
@@ -108,9 +108,24 @@ if [ ! -d "$EXTENSION_PATH" ]; then
     echo "         The DMG will not include the mail extension."
 fi
 
-# ── Code signing (extension first, then app) ─────────────────────
+# ── Code signing (inside-out: Sparkle → extension → app) ─────────
 if [ -n "$IDENTITY" ]; then
-    # Sign the MailKit extension first (inside-out signing order)
+    echo "==> Signing embedded frameworks and helpers..."
+    SPARKLE_FW="$APP_PATH/Contents/Frameworks/Sparkle.framework"
+    if [ -d "$SPARKLE_FW" ]; then
+        for xpc in "$SPARKLE_FW"/Versions/B/XPCServices/*.xpc; do
+            [ -d "$xpc" ] && codesign --force --options runtime --sign "$IDENTITY" --timestamp "$xpc"
+        done
+        for app in "$SPARKLE_FW"/Versions/B/*.app; do
+            [ -d "$app" ] && codesign --force --options runtime --sign "$IDENTITY" --timestamp "$app"
+        done
+        for bin in "$SPARKLE_FW"/Versions/B/Autoupdate; do
+            [ -f "$bin" ] && codesign --force --options runtime --sign "$IDENTITY" --timestamp "$bin"
+        done
+        codesign --force --options runtime --sign "$IDENTITY" --timestamp "$SPARKLE_FW"
+    fi
+
+    # Sign the MailKit extension (inside-out signing order)
     if [ -d "$EXTENSION_PATH" ]; then
         echo "==> Signing extension: $EXTENSION_NAME"
         codesign --force --options runtime \
@@ -129,7 +144,7 @@ if [ -n "$IDENTITY" ]; then
         --entitlements "$PROJECT_DIR/$APP_NAME.entitlements" \
         "$APP_PATH"
     echo "==> Verifying signature..."
-    codesign --verify --verbose=2 "$APP_PATH"
+    codesign --verify --verbose=2 --deep "$APP_PATH"
     echo "    Signature OK"
 fi
 
@@ -203,20 +218,49 @@ if [ "$SKIP_NOTARIZE" = false ] && [ -n "$IDENTITY" ]; then
     fi
 fi
 
+# ── Sparkle update archive + appcast ────────────────────────────
+echo "==> Creating Sparkle update archive..."
+SPARKLE_DIR="$BUILD_DIR/sparkle"
+rm -rf "$SPARKLE_DIR"
+mkdir -p "$SPARKLE_DIR"
+
+ZIP_NAME="Triage-${VERSION}-b${NEW_BUILD}.zip"
+ZIP_PATH="$SPARKLE_DIR/$ZIP_NAME"
+ditto -c -k --keepParent "$APP_PATH" "$ZIP_PATH"
+echo "  Archive: $ZIP_PATH"
+
+GENERATE_APPCAST="$PROJECT_DIR/.build/artifacts/sparkle/Sparkle/bin/generate_appcast"
+if [ -x "$GENERATE_APPCAST" ]; then
+    echo "==> Generating appcast..."
+    "$GENERATE_APPCAST" "$SPARKLE_DIR"
+    echo "  Appcast: $SPARKLE_DIR/appcast.xml"
+else
+    echo "WARNING: generate_appcast not found at $GENERATE_APPCAST"
+    echo "  Run 'swift package resolve' first, then re-run this script."
+fi
+
+# ── Stage appcast to website (binaries go to GitHub Releases) ────
+WWW_UPDATES="$PROJECT_DIR/../www/static/updates/triage"
+if [ -d "$PROJECT_DIR/../www" ]; then
+    mkdir -p "$WWW_UPDATES"
+    [ -f "$SPARKLE_DIR/appcast.xml" ] && cp -f "$SPARKLE_DIR/appcast.xml" "$WWW_UPDATES/"
+    echo "  Appcast staged to: $WWW_UPDATES/appcast.xml"
+fi
+
 # ── Cleanup ──────────────────────────────────────────────────────
 rm -rf "$STAGING_DIR"
 
 echo ""
-echo "Done! DMG created at:"
-echo "  $DMG_PATH"
-echo "  Version: $VERSION (build $NEW_BUILD)"
-echo "  Size: $(ls -lh "$DMG_PATH" | awk '{print $5}')"
-echo "  Architectures: $ARCHS"
+echo "Done!"
+echo "  DMG:      $DMG_PATH ($(ls -lh "$DMG_PATH" | awk '{print $5}'))"
+echo "  ZIP:      $ZIP_PATH (for Sparkle auto-update)"
+echo "  Version:  $VERSION (build $NEW_BUILD)"
+echo "  Arch:     $ARCHS"
 if [ -d "$EXTENSION_PATH" ]; then
-    echo "  MailKit extension: included"
+    echo "  Extension: MailKit extension included"
 fi
 if [ -n "$IDENTITY" ]; then
-    echo "  Signed with: $IDENTITY"
+    echo "  Signed:   $IDENTITY"
     if [ "$SKIP_NOTARIZE" = false ]; then
         echo "  Notarized and stapled"
     else
@@ -225,19 +269,61 @@ if [ -n "$IDENTITY" ]; then
 else
     echo "  WARNING: Unsigned — users will see Gatekeeper warnings"
 fi
-
 echo ""
 echo "Build number $NEW_BUILD has been written to Info.plist."
 
-# ── Git tag ──────────────────────────────────────────────────────
+# ── Git tag + push ───────────────────────────────────────────────
 TAG="v${VERSION}-b${NEW_BUILD}"
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     git add "$PLIST"
     git commit -m "Build $NEW_BUILD for v$VERSION distribution" 2>/dev/null || true
     git tag -a "$TAG" -m "$PRODUCT_NAME $VERSION build $NEW_BUILD"
     echo "  Tagged: $TAG"
-    echo ""
-    echo "Push with: git push && git push --tags"
+    echo "==> Pushing to remote..."
+    git push && git push --tags
+fi
+
+# ── GitHub Release ───────────────────────────────────────────────
+if command -v gh >/dev/null 2>&1; then
+    echo "==> Creating GitHub release..."
+    PREV_TAG=$(git tag --sort=-v:refname | grep -v "^$TAG$" | head -1)
+    if [ -n "$PREV_TAG" ]; then
+        RELEASE_NOTES=$(git log --pretty=format:"- %s" "$PREV_TAG".."$TAG" -- . ':!Info.plist' | grep -v "^- Build [0-9]")
+    fi
+    if [ -z "$RELEASE_NOTES" ]; then
+        RELEASE_NOTES="$PRODUCT_NAME $VERSION build $NEW_BUILD"
+    fi
+
+    NOTES_BODY="## What's New
+
+$RELEASE_NOTES
+
+## Install
+
+Download **$DMG_NAME**, open it, and drag Triage to your Applications folder.
+
+Existing users with auto-update enabled will receive this update automatically via Sparkle."
+
+    REPO_SLUG=$(gh repo view --json nameWithOwner -q .nameWithOwner)
+
+    gh release create "$TAG" "$DMG_PATH" "$ZIP_PATH" \
+        --title "$PRODUCT_NAME $VERSION (build $NEW_BUILD)" \
+        --notes "$NOTES_BODY" \
+        && echo "  Release: https://github.com/$REPO_SLUG/releases/tag/$TAG" \
+        || echo "  WARNING: GitHub release creation failed."
+
+    # Rewrite appcast enclosure URL to point at GitHub Releases
+    GITHUB_ZIP_URL="https://github.com/$REPO_SLUG/releases/download/$TAG/$ZIP_NAME"
+    if [ -f "$WWW_UPDATES/appcast.xml" ]; then
+        sed -i '' "s|url=\"[^\"]*$ZIP_NAME\"|url=\"$GITHUB_ZIP_URL\"|" "$WWW_UPDATES/appcast.xml"
+        echo "  Appcast URL rewritten to: $GITHUB_ZIP_URL"
+    fi
 else
-    echo "Not in a git repo — skipping tag."
+    echo "  gh CLI not found — skipping GitHub release. Install with: brew install gh"
+fi
+
+# ── Website deploy reminder ──────────────────────────────────────
+echo ""
+if [ -d "$WWW_UPDATES" ]; then
+    echo "Next: cd ../www && git add -A && git commit -m \"Triage $VERSION build $NEW_BUILD\" && git push"
 fi

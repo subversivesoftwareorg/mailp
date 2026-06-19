@@ -1,9 +1,13 @@
 import SwiftUI
 import SwiftData
+import Sparkle
 
 @main
-struct MailPlusApp: App {
+struct TriageApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    private let updaterController = SPUStandardUpdaterController(
+        startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil
+    )
 
     let modelContainer: ModelContainer
     let statsStore: StatsStore
@@ -12,7 +16,7 @@ struct MailPlusApp: App {
 
     init() {
         let schema = Schema([ActivityRecord.self, SnoozedMessage.self])
-        let config = ModelConfiguration("MailPlus", schema: schema)
+        let config = ModelConfiguration("Triage", schema: schema)
         let container = try! ModelContainer(for: schema, configurations: [config])
 
         let snooze = SnoozeService(modelContainer: container)
@@ -31,7 +35,7 @@ struct MailPlusApp: App {
 
     var body: some Scene {
         MenuBarExtra {
-            PopoverView()
+            PopoverView(updater: updaterController.updater)
                 .environment(statsStore)
                 .environment(keyboardService)
         } label: {
@@ -42,8 +46,8 @@ struct MailPlusApp: App {
         }
         .menuBarExtraStyle(.window)
 
-        Window("Mail+ Dashboard", id: "dashboard") {
-            DashboardView()
+        Window("Triage Dashboard", id: "dashboard") {
+            DashboardView(updater: updaterController.updater)
                 .environment(statsStore)
                 .environment(snoozeService)
                 .modelContainer(modelContainer)
@@ -51,7 +55,10 @@ struct MailPlusApp: App {
         .defaultSize(width: 800, height: 500)
         .commands {
             CommandGroup(replacing: .appInfo) {
-                Button("About Mail+") { appDelegate.showAboutPanel(nil) }
+                Button("About Triage") { appDelegate.showAboutPanel(nil) }
+            }
+            CommandGroup(after: .appInfo) {
+                CheckForUpdatesView(updater: updaterController.updater)
             }
         }
     }

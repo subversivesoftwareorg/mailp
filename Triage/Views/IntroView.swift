@@ -7,7 +7,7 @@ struct IntroView: View {
         VStack(spacing: 32) {
             Spacer()
 
-            Text("Welcome to Mail+")
+            Text("Welcome to Triage")
                 .font(.largeTitle.bold())
 
             Text("Power-user shortcuts for Mail.app")
@@ -19,13 +19,13 @@ struct IntroView: View {
                     step: "1",
                     icon: "gearshape",
                     title: "Enable Shortcuts",
-                    detail: "Click the Mail+ icon in your menu bar and flip the Keyboard Shortcuts toggle."
+                    detail: "Click the Triage icon in your menu bar and flip the Keyboard Shortcuts toggle."
                 )
                 introCard(
                     step: "2",
                     icon: "lock.shield",
                     title: "Grant Access",
-                    detail: "Allow Mail+ in System Settings > Privacy & Security > Accessibility so it can intercept keys."
+                    detail: "Allow Triage in System Settings > Privacy & Security > Accessibility so it can intercept keys."
                 )
                 introCard(
                     step: "3",

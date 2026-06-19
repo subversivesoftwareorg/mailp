@@ -113,7 +113,7 @@ final class MailQueryService: Sendable {
 
     // MARK: - Blocking
 
-    private static let blockRuleName = "Mail+ Blocks"
+    private static let blockRuleName = "Triage Blocks"
 
     func fetchSelectedSender() async throws -> String? {
         let script = """
@@ -307,7 +307,7 @@ enum MailQueryError: Error, LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .scriptFailed(let msg): "Mail+ query failed: \(msg)"
+        case .scriptFailed(let msg): "Triage query failed: \(msg)"
         }
     }
 }

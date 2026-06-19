@@ -18,7 +18,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         )
 
         NSApp.orderFrontStandardAboutPanel(options: [
-            .applicationName: "Mail+",
+            .applicationName: "Triage",
             .applicationVersion: version,
             .version: build,
             .credits: credits,

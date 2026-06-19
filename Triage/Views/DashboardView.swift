@@ -1,11 +1,13 @@
 import SwiftUI
 import SwiftData
+import Sparkle
 
 struct DashboardView: View {
     @Environment(StatsStore.self) private var store
     @AppStorage("hasSeenIntro") private var hasSeenIntro = false
     @State private var selection: String = "overview"
     @State private var historyDays = 7
+    let updater: SPUUpdater
 
     private static let overviewTag = "overview"
     private static let shortcutsTag = "shortcuts"
@@ -21,8 +23,11 @@ struct DashboardView: View {
                 } detail: {
                     detailView
                 }
-                .navigationTitle("Mail+")
+                .navigationTitle("Triage")
                 .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        CheckForUpdatesView(updater: updater)
+                    }
                     ToolbarItem(placement: .primaryAction) {
                         Button {
                             Task { await store.refresh() }

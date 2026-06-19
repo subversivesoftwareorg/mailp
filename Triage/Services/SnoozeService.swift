@@ -136,7 +136,7 @@ final class SnoozeService {
 
     private func scheduleNotification(for message: SnoozedMessage) {
         let content = UNMutableNotificationContent()
-        content.title = "Mail+ Reminder"
+        content.title = "Triage Reminder"
         content.body = message.messageSubject
         content.sound = .default
 

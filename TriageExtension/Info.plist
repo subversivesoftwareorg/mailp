@@ -23,7 +23,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.mail.extension</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).MailPlusExtension</string>
+		<string>$(PRODUCT_MODULE_NAME).TriageExtension</string>
 	</dict>
 </dict>
 </plist>

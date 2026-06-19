@@ -57,7 +57,7 @@ struct AccountDetailView: View {
 
             let records = store.activityHistory(for: account.name, days: historyDays)
             if records.isEmpty {
-                Text("No history yet — data is recorded as you use Mail+.")
+                Text("No history yet — data is recorded as you use Triage.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)

@@ -1,6 +1,6 @@
 import MailKit
 
-final class MailPlusExtension: NSObject, MEExtension {
+final class TriageExtension: NSObject, MEExtension {
 
     func handler(for session: MEComposeSession) -> MEComposeSessionHandler {
         ComposeHandler()
