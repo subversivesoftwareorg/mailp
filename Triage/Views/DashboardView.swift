@@ -228,6 +228,7 @@ struct DashboardView: View {
             ShortcutRow(key: "H", action: "Remind Tonight", detail: "Mail.app Remind Me — tonight"),
             ShortcutRow(key: "J", action: "Remind Tomorrow", detail: "Mail.app Remind Me — tomorrow"),
             ShortcutRow(key: "K", action: "Remind Later", detail: "Mail.app Remind Me — opens date picker"),
+            ShortcutRow(key: "<", action: "Share to Less", detail: "Send email content to Less is More for consumption tracking"),
             ShortcutRow(key: "/", action: "Search", detail: "Focus the search field to search all mail"),
             ShortcutRow(key: "⌘S", action: "Send", detail: "Send the message being composed"),
             ShortcutRow(key: "⇧⌘S", action: "Send + Follow Up", detail: "Send and create a 1-week follow-up reminder"),

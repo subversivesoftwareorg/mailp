@@ -28,7 +28,7 @@ final class KeyboardShortcutService {
     ]
 
     enum Action {
-        case delete, archive, reply, forward, createTask, search
+        case delete, archive, reply, forward, createTask, search, shareToLess
         case remindTonight, remindTomorrow, remindLater
     }
 
@@ -182,6 +182,20 @@ final class KeyboardShortcutService {
             }
         }
 
+        // < (Shift+comma) → Share to Less
+        if keyCode == 43
+            && flags.contains(.maskShift)
+            && !flags.contains(.maskCommand)
+            && !flags.contains(.maskControl)
+            && !flags.contains(.maskAlternate) {
+            if !isTextInputFocusedStatic() {
+                Task { @MainActor in
+                    await service.shareToLess()
+                }
+                return nil
+            }
+        }
+
         // Pass through if modifier keys are held (real shortcuts like Cmd+R)
         if flags.contains(.maskCommand) || flags.contains(.maskControl) || flags.contains(.maskAlternate) {
             return Unmanaged.passRetained(event)
@@ -221,6 +235,10 @@ final class KeyboardShortcutService {
             }
         case .search:
             postKeystrokeStatic(keyCode: 3, flags: [.maskCommand, .maskAlternate])
+        case .shareToLess:
+            Task { @MainActor in
+                await service.shareToLess()
+            }
         }
         return nil
     }
@@ -398,6 +416,80 @@ final class KeyboardShortcutService {
         } else {
             NSSound.beep()
         }
+    }
+
+    func shareToLess() async {
+        let script = """
+        tell application "Mail"
+            set sel to selection
+            if (count of sel) = 0 then
+                return ""
+            end if
+            set msg to item 1 of sel
+            set subj to subject of msg
+            set sndr to sender of msg
+            set body to content of msg
+            set msgDate to date received of msg
+            set epochRef to current date
+            set year of epochRef to 2001
+            set month of epochRef to 1
+            set day of epochRef to 1
+            set hours of epochRef to 0
+            set minutes of epochRef to 0
+            set seconds of epochRef to 0
+            set epochSecs to (msgDate - epochRef)
+            return subj & "\\n---TRIAGE_SEP---\\n" & sndr & "\\n---TRIAGE_SEP---\\n" & epochSecs & "\\n---TRIAGE_SEP---\\n" & body
+        end tell
+        """
+        guard let output = try? await runScript(script), !output.isEmpty else {
+            NSSound.beep()
+            return
+        }
+        let parts = output.components(separatedBy: "\n---TRIAGE_SEP---\n")
+        guard parts.count >= 4 else { NSSound.beep(); return }
+        let subject = parts[0]
+        let sender = parts[1]
+        let appleEpochSecs = Double(parts[2]) ?? 0
+        // AppleScript epoch is Jan 1, 2001; Unix epoch offset = 978307200
+        let unixTimestamp = appleEpochSecs + 978_307_200
+        let body = parts[3]
+
+        let payload: [String: Any] = [
+            "subject": subject,
+            "body": body,
+            "sender": sender,
+            "dateTimestamp": unixTimestamp,
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload),
+              let tempDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            NSSound.beep()
+            return
+        }
+
+        let tempFile = tempDir.appendingPathComponent("triage-to-less-\(UUID().uuidString).json")
+        do {
+            try jsonData.write(to: tempFile)
+        } catch {
+            NSSound.beep()
+            return
+        }
+
+        let urlString = "less://import-email?file=\(tempFile.path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? tempFile.path)"
+        if let url = URL(string: urlString) {
+            NSWorkspace.shared.open(url)
+        }
+
+        let content = UNMutableNotificationContent()
+        content.title = "Shared to Less"
+        content.body = subject
+        content.sound = nil
+        let request = UNNotificationRequest(
+            identifier: "less-\(Date.now.timeIntervalSince1970)",
+            content: content,
+            trigger: nil
+        )
+        try? await UNUserNotificationCenter.current().add(request)
     }
 
     private func runScript(_ source: String) async throws -> String {
